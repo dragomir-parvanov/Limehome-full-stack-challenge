@@ -1,5 +1,8 @@
 {
   "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs"
+  },
   "include": [
     "src/server/**/*.node.spec.ts",
     "src/server/**/*.d.ts"

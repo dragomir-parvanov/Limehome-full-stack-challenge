@@ -6,8 +6,8 @@
  * const data = response.data ?? thrower(new ArgumentNullError("response.data"))
  * }
  * catch(err){
- * console.log(err)
- * // err will be 'Argument with name "response.data" cannot be undefined or null
+ * console.log(error)
+ * // error will be 'Argument with name "response.data" cannot be undefined or null
  * }
  */
 export default class ArgumentNullError extends Error {
