@@ -81,7 +81,7 @@
           "options": {
             "main": "src/client/test.ts",
             "polyfills": "src/client/polyfills.ts",
-            "tsConfig": "tsconfig.spec.json",
+            "tsConfig": "tsconfig.client.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
               "src/client/favicon.ico",
@@ -98,7 +98,7 @@
           "options": {
             "tsConfig": [
               "tsconfig.app.json",
-              "tsconfig.spec.json",
+              "tsconfig.client.spec.json",
               "e2e/tsconfig.json"
             ],
             "exclude": [
