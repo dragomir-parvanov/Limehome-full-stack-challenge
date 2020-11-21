@@ -4,6 +4,6 @@ export const generateAngularEnvironmentFileContent = (stage: string): string => 
 
 };
 
-export const replaceAngularEnvinronment = (content: string): void => {
+export const replaceAngularEnvironment = (content: string): void => {
 
 };
