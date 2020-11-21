@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { shouldNotReference } from "../not-referencing/should-not";
 
 @Component({
   selector: 'app-root',
@@ -9,4 +8,3 @@ import { shouldNotReference } from "../not-referencing/should-not";
 export class AppComponent {
   title = 'limehome-full-stack-challenge';
 }
-shouldNotReference()
