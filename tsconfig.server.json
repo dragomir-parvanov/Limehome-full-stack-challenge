@@ -1,0 +1,7 @@
+{
+  "extends": "./tsconfig.json",
+  "include": [
+    "src/server/**/*.node.spec.ts",
+    "src/server/**/*.d.ts"
+  ]
+}
