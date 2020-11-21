@@ -27,8 +27,8 @@
             "tsConfig": "tsconfig.app.json",
             "aot": true,
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "src/client/favicon.ico",
+              "src/client/assets"
             ],
             "styles": [
               "src/client/styles.scss"
@@ -37,12 +37,6 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [
-                {
-                  "replace": "src/environments/environment.ts",
-                  "with": "src/environments/environment.prod.ts"
-                }
-              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -85,16 +79,16 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "src/test.ts",
-            "polyfills": "src/polyfills.ts",
+            "main": "src/client/test.ts",
+            "polyfills": "src/client/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
             "assets": [
-              "src/favicon.ico",
-              "src/assets"
+              "src/client/favicon.ico",
+              "src/client/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/client/styles.scss"
             ],
             "scripts": []
           }
