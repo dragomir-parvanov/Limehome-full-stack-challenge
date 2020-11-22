@@ -1,0 +1,4 @@
+{
+  "migrations":"src/migrations/*.ts",
+  "entities":"src/entities/*.ts"
+}
