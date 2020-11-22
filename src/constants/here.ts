@@ -10,3 +10,5 @@ export const HERE_PLACES_BASE_URL =
   'https://places.ls.hereapi.com/places/v1/browse';
 
 export const HERE_PLACES_DEFAULT_RADIUS = 3000;
+
+export const HERE_PLACES_DEFAULT_PARAMS = { cat: 'hotel' };

@@ -26,8 +26,11 @@
     "express": "^4.17.1",
     "fp-ts": "^2.8.6",
     "io-ts": "^2.2.13",
+    "pg": "^8.5.1",
+    "reflect-metadata": "^0.1.13",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
+    "typeorm": "^0.2.29",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {

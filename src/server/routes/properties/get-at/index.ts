@@ -1,14 +1,18 @@
-import Axios from 'axios';
 import { Router } from 'express';
 import { either, taskEither } from 'fp-ts';
 import { pipe, tuple } from 'fp-ts/lib/function';
 import {
   HERE_API_KEY,
   HERE_PLACES_BASE_URL,
+  HERE_PLACES_DEFAULT_PARAMS,
   HERE_PLACES_DEFAULT_RADIUS,
 } from '../../../../constants/here';
-import { PositionDecoder } from '../../../../functions/decoders/position';
+import {
+  LatitudeDecoder,
+  LongtitudeDecoder,
+} from '../../../../functions/decoders/position';
 import * as D from 'io-ts/Decoder';
+import { NodeAxios } from '../../../utils/axios.node';
 
 const getPropertiesAtRouter = Router();
 
@@ -24,14 +28,14 @@ export const getPropertiesAt = (
 ): Promise<[statusCode: number, data: any]> =>
   pipe(
     latitude,
-    PositionDecoder.decode,
+    LatitudeDecoder.decode,
     either.chain((parsedLatitude) =>
       pipe(
-        PositionDecoder.decode(longitude),
+        LongtitudeDecoder.decode(longitude),
         either.map((parsedLongitude) => ({
-          in: `${parsedLatitude},${parsedLongitude}`,
+          in: `${parsedLatitude},${parsedLongitude};r=${HERE_PLACES_DEFAULT_RADIUS}`,
           apiKey: HERE_API_KEY,
-          r: HERE_PLACES_DEFAULT_RADIUS,
+          ...HERE_PLACES_DEFAULT_PARAMS,
         }))
       )
     ),
@@ -39,8 +43,12 @@ export const getPropertiesAt = (
     taskEither.fromEither,
     taskEither.chain((params) =>
       taskEither.tryCatch(
-        () => Axios.get(HERE_PLACES_BASE_URL, { params }),
-        (err) => tuple(500, `${err}`)
+        () =>
+          NodeAxios.get(HERE_PLACES_BASE_URL, {
+            params,
+            paramsSerializer: (p) => new URLSearchParams(p).toString(),
+          }),
+        (err) => tuple(500, `Here API error: ${err}`)
       )
     ),
     taskEither.map((r) => r.data),
@@ -52,7 +60,7 @@ export const getPropertiesAt = (
         )
       )
   );
-getPropertiesAtRouter.get('?at=:latitude,:longitude ', async (req, res) => {
+getPropertiesAtRouter.get('/at=:latitude,:longitude', async (req, res) => {
   const { latitude, longitude } = req.params;
   const [statusCode, value] = await getPropertiesAt(latitude, longitude);
 
