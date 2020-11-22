@@ -33,6 +33,7 @@ export const getPropertyBookings = (
         )
       )
   );
+
 getPropertyBookingsRouter.get('/:propertyId/bookings', async (req, res) => {
   const { propertyId } = req.params;
   if (!propertyId) {

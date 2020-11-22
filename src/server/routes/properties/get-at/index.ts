@@ -60,6 +60,7 @@ export const getPropertiesAt = (
         )
       )
   );
+
 getPropertiesAtRouter.get('/at=:latitude,:longitude', async (req, res) => {
   const { latitude, longitude } = req.params;
   const [statusCode, value] = await getPropertiesAt(latitude, longitude);
