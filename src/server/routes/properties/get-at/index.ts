@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { either, taskEither } from 'fp-ts';
-import { pipe, tuple } from 'fp-ts/lib/function';
+import { flow, pipe, tuple } from 'fp-ts/lib/function';
 import {
   HERE_API_KEY,
   HERE_PLACES_BASE_URL,
@@ -9,10 +9,11 @@ import {
 } from '../../../../constants/here';
 import {
   LatitudeDecoder,
-  LongtitudeDecoder,
+  LongitudeDecoder,
 } from '../../../../functions/decoders/position';
 import * as D from 'io-ts/Decoder';
 import { NodeAxios } from '../../../utils/axios.node';
+import { PropertyDoceder } from '../../../../functions/decoders/properties';
 
 const getPropertiesAtRouter = Router();
 
@@ -31,7 +32,7 @@ export const getPropertiesAt = (
     LatitudeDecoder.decode,
     either.chain((parsedLatitude) =>
       pipe(
-        LongtitudeDecoder.decode(longitude),
+        LongitudeDecoder.decode(longitude),
         either.map((parsedLongitude) => ({
           in: `${parsedLatitude},${parsedLongitude};r=${HERE_PLACES_DEFAULT_RADIUS}`,
           apiKey: HERE_API_KEY,
@@ -51,11 +52,24 @@ export const getPropertiesAt = (
         (err) => tuple(500, `Here API error: ${err}`)
       )
     ),
-    taskEither.map((r) => r.data),
+    taskEither.map((r) => r.data?.results?.items),
+    taskEither.chainEitherK(
+      flow(
+        D.array(PropertyDoceder).decode,
+        either.mapLeft((err) =>
+          tuple(
+            500,
+            `The 'Here' api did not return what we expected, error:\n${D.draw(
+              err
+            )}`
+          )
+        )
+      )
+    ),
     (r) =>
       r().then(
         either.fold(
-          (e) => e,
+          (e) => e as [statusCode: number, value: any], // to omit the "string" type
           (data) => [200, data]
         )
       )
