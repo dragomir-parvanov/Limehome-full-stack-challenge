@@ -12,7 +12,7 @@ export const createBookingRoute = Router();
 
 /**
  * Decodes then validates the body and then inserting to the database.
- * It returns a promise which always resolves with a tuple of status code and value
+ * It returns a promise which always resolves with a tuple of a status code and value
  */
 export const createBookingForProperty: (
   body: unknown
@@ -34,25 +34,35 @@ export const createBookingForProperty: (
           tuple(500, `Database error durign the saving of the property: ${err}`)
       ),
       taskEither.map((property) =>
-        bookingsRepository.create({ from, to, property })
+        bookingsRepository.create({
+          from: new Date(from),
+          to: new Date(to),
+          property,
+        })
       ),
       taskEither.chain(
-        taskEither.tryCatchK(bookingsRepository.save, (err) =>
-          tuple(500, `Database error during saving of the booking: ${err}`)
+        taskEither.tryCatchK(
+          (b) => bookingsRepository.save(b),
+          (err) =>
+            tuple(500, `Database error during saving of the booking: ${err}`)
         )
       )
     );
   }),
   (r) =>
-    r().then(
-      either.fold(
-        (e) => e,
-        () => tuple(200, 'The booking was successfully created')
+    r()
+      .then(
+        either.fold(
+          (e) => e,
+          () => tuple(200, 'The booking was successfully created')
+        )
       )
-    )
+      .catch((err) => tuple(500, `Unhandled rejection: ${err}`))
 );
 createBookingRoute.post('', async (req, res) => {
   const [statusCode, value] = await createBookingForProperty(req.body);
 
   res.status(statusCode).send(value);
 });
+
+export default createBookingRoute;

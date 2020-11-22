@@ -13,7 +13,7 @@ export const validateBookingInput = (
     ),
     either.chain(
       either.fromPredicate(
-        (e) => e.from < new Date().getTime(),
+        (e) => e.from > new Date().getTime() - 100000, // some tolerance
         () => 'Cannot make booking for a past date'
       )
     )
