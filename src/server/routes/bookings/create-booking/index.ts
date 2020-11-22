@@ -2,7 +2,6 @@ import { Router } from 'express';
 import { either, taskEither } from 'fp-ts';
 import { flow, pipe, tuple } from 'fp-ts/lib/function';
 import { draw } from 'io-ts/lib/Decoder';
-import { id } from 'io-ts/lib/Kleisli';
 import { getConnection } from 'typeorm';
 import BookingEntity from '../../../../entities/booking.entity';
 import PropertyEntity from '../../../../entities/property.entity';
@@ -10,7 +9,14 @@ import { CreateBookingInputDecoder } from '../../../../functions/decoders/bookin
 import { validateBookingInput } from '../../../../functions/validators/booking';
 
 export const createBookingRoute = Router();
-const createBookingProperty = flow(
+
+/**
+ * Decodes then validates the body and then inserting to the database.
+ * It returns a promise which always resolves with a tuple of status code and value
+ */
+export const createBookingForProperty: (
+  body: unknown
+) => Promise<[statusCode: number, value: string]> = flow(
   CreateBookingInputDecoder.decode,
   either.mapLeft(draw),
   either.chain(validateBookingInput),
@@ -41,8 +47,12 @@ const createBookingProperty = flow(
     r().then(
       either.fold(
         (e) => e,
-        (r) => tuple(200, 'Successfuly created booking')
+        () => tuple(200, 'The booking was successfully created')
       )
     )
 );
-createBookingRoute.post('', (req, res) => {});
+createBookingRoute.post('', async (req, res) => {
+  const [statusCode, value] = await createBookingForProperty(req.body);
+
+  res.status(statusCode).send(value);
+});
