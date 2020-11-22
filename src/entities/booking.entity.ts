@@ -1,10 +1,4 @@
-import {
-  Column,
-  Entity,
-  ManyToOne,
-  PrimaryColumn,
-  PrimaryGeneratedColumn,
-} from 'typeorm';
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import PropertyEntity from './property.entity';
 
 @Entity('booking')
@@ -15,8 +9,9 @@ export default class BookingEntity {
   @ManyToOne((type) => PropertyEntity, (property) => property.bookings)
   property: PropertyEntity;
 
-  @Column({ type: 'date' })
+  @Column({ type: 'timestamp' })
   from: Date;
-  @Column({ type: 'date' })
+
+  @Column({ type: 'timestamp' })
   to: Date;
 }
