@@ -13,6 +13,9 @@ import {
   DEFAULT_MAP_LONGITUDE,
 } from '../../../constants/position';
 
+/**
+ * This is intended to be used as a singleton.
+ */
 @Injectable({
   providedIn: 'root',
 })
