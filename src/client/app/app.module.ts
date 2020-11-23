@@ -6,9 +6,10 @@ import { AppComponent } from './app.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MapComponent } from './components/map/map.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PropertySwiperComponent } from './components/property-swiper/property-swiper.component';
 
 @NgModule({
-  declarations: [AppComponent, NavBarComponent, MapComponent],
+  declarations: [AppComponent, NavBarComponent, MapComponent, PropertySwiperComponent],
   imports: [
     HttpClientModule,
     BrowserModule,
