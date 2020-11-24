@@ -1,9 +1,8 @@
-import { Inject, Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Subject, of, Observable } from 'rxjs';
-
-import { flow, pipe } from 'fp-ts/lib/function';
-import { mergeMap, catchError, map } from 'rxjs/operators';
+import { BehaviorSubject, of, Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { flow } from 'fp-ts/lib/function';
 import { array } from 'io-ts/lib/Decoder';
 import { fold } from 'fp-ts/lib/Either';
 import { PropertyDoceder } from '../../../../functions/decoders/properties';
@@ -20,15 +19,16 @@ import {
   providedIn: 'root',
 })
 export class MapService {
-  currentFocusedProperty = new BehaviorSubject<string>('');
   latitude = DEFAULT_MAP_LATITUDE;
   longitude = DEFAULT_MAP_LONGITUDE;
+  currentFocusedProperty = new BehaviorSubject<string>('');
   properties = new BehaviorSubject<Property[]>([]);
+
   private propertiesObservable: Observable<Property[]>;
-  constructor(private http: HttpClient) {
+  constructor(http: HttpClient) {
     const at = `${this.latitude},${this.longitude}`;
 
-    this.propertiesObservable = this.http.get(`/api/properties/at=${at}`).pipe(
+    this.propertiesObservable = http.get(`/api/properties/at=${at}`).pipe(
       catchError((err) => {
         console.log(
           `error while retrieving the properties from the server, returning empty array`,
@@ -54,12 +54,11 @@ export class MapService {
     );
   }
 
+  /**
+   * When this gets called it performs the network fetching.
+   */
   init() {
     this.getAndSetProperties();
-  }
-
-  changePropertyFocus(propertyId: string) {
-    this.currentFocusedProperty.next(propertyId);
   }
 
   private getAndSetProperties() {

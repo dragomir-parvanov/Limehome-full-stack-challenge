@@ -7,9 +7,10 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { MapComponent } from './components/map/map.component';
 import { HttpClientModule } from '@angular/common/http';
 import { PropertySwiperComponent } from './components/property-swiper/property-swiper.component';
+import { PropertyCardComponent } from './components/property-card/property-card.component';
 
 @NgModule({
-  declarations: [AppComponent, NavBarComponent, MapComponent, PropertySwiperComponent],
+  declarations: [AppComponent, NavBarComponent, MapComponent, PropertySwiperComponent, PropertyCardComponent],
   imports: [
     HttpClientModule,
     BrowserModule,

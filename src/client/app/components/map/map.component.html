@@ -1,8 +1,9 @@
 <div class="agm-map-container">
-  <agm-map [zoom]="15" [disableDefaultUI]="true" [latitude]="mapService.latitude" [longitude]="mapService.longitude">
-    <agm-marker *ngFor="let marker of propertyMarkers" [zIndex]="marker.zIndex" [latitude]="marker.position[0]"
+  <app-property-swiper></app-property-swiper>
+  <agm-map [zoom]="17" [disableDefaultUI]="true" [latitude]="latitude" [longitude]="longitude">
+    <agm-marker *ngFor="let marker of markers" [zIndex]="marker.zIndex" [latitude]="marker.position[0]"
       [longitude]="marker.position[1]" [iconUrl]="'../../../../assets/' + marker.iconFileName"
-      (markerClick)="handleMarkerClick(marker)">
+      (markerClick)="onMarkerClick(marker)">
     </agm-marker>
   </agm-map>
 </div>

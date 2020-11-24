@@ -18,6 +18,6 @@ export const createMarkerFactory = (selectedPropertyId: string) => (
     ? ACTIVE_MAP_MARKER_IMAGE_FILE_NAME
     : DEFAULT_MAP_MARKER_IMAGE_FILE_NAME;
   const zIndex = isSelected ? 1 : 0;
-
+  console.log('creating');
   return { ...property, iconFileName, zIndex };
 };
