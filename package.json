@@ -13,9 +13,7 @@
     "lint": "ng lint",
     "e2e": "ng e2e",
     "watch-server": "cross-env NODE_ENV=development ts-node-dev --no-notify --project tsconfig.server.json src/server/main.ts",
-    "test-server": "cross-env TS_NODE_PROJECT=tsconfig.server.json mocha",
-    "heroku-prebuild": "export YARN_PRODUCTION=true=false; export NODE_ENV=; YARN_PRODUCTION=true=false NODE_ENV=development yarn",
-    "heroku-postbuild": "export YARN_PRODUCTION=true=true; export NODE_ENV=production;"
+    "test-server": "cross-env TS_NODE_PROJECT=tsconfig.server.json mocha"
   },
   "private": true,
   "dependencies": {
