@@ -7,7 +7,7 @@
   "scripts": {
     "ng": "ng",
     "watch-client": "ng serve --proxy-config ng-proxy.conf.json",
-    "start":"cross-env NODE_ENV=production ts-node --project tsconfig.server.json src/server/main.ts",
+    "start":"NODE_ENV=production ts-node --project tsconfig.server.json src/server/main.ts",
     "build": "ng build --prod",
     "test-client": "ng test",
     "lint": "ng lint",
@@ -36,8 +36,7 @@
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "typeorm": "^0.2.29",
-    "zone.js": "~0.10.2",
-    "cross-env": "^7.0.2"
+    "zone.js": "~0.10.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.1100.2",
@@ -73,7 +72,7 @@
     "protractor": "~7.0.0",
     "ts-node": "^9.0.0",
     "ts-node-dev": "^1.0.0",
-    "tslint": "~6.1.0",
-    "typescript": "~4.0.2"
+    "typescript": "~4.0.2",
+    "cross-env": "^7.0.2"
   }
 }
