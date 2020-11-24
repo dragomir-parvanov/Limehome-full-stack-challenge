@@ -37,6 +37,12 @@
           },
           "configurations": {
             "production": {
+              "fileReplacements": [
+                {
+                  "replace": "src/client/environments/environment.ts",
+                  "with": "src/client/environments/environment.production.ts"
+              }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,

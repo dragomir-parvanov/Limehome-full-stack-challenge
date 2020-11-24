@@ -49,4 +49,4 @@ debug.log
 
 *.env
 
-src/client/environments/environment.ts
+# src/client/environments/environment.ts
