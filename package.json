@@ -7,13 +7,13 @@
   "scripts": {
     "ng": "ng",
     "watch-client": "ng serve --proxy-config ng-proxy.conf.json",
-    "start":"node dist/limehome-full-stack-challenge-server/src/server/main.js",
+    "start": "node dist/limehome-full-stack-challenge-server/src/server/main.js",
     "build": "tsc --project tsconfig.server.json && ng build --prod",
     "test-client": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "watch-server": "cross-env NODE_ENV=development ts-node-dev --no-notify --project tsconfig.server.json src/server/main.ts",
-    "test-server": "cross-env TS_NODE_PROJECT=tsconfig.server.json mocha"
+    "test-server": "cross-env NODE_ENV=testing cross-env TS_NODE_PROJECT=tsconfig.server.json mocha"
   },
   "private": true,
   "dependencies": {
@@ -34,6 +34,7 @@
     "pg": "^8.5.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "~6.6.0",
+    "supertest": "^6.0.1",
     "tslib": "^2.0.0",
     "typeorm": "^0.2.29",
     "zone.js": "~0.10.2"
@@ -53,10 +54,12 @@
     "@types/jasmine": "~3.6.0",
     "@types/mocha": "^8.0.4",
     "@types/node": "^12.11.1",
+    "@types/supertest": "^2.0.10",
     "@typescript-eslint/eslint-plugin": "4.3.0",
     "@typescript-eslint/parser": "4.3.0",
     "chai": "^4.2.0",
     "codelyzer": "^6.0.0",
+    "cross-env": "^7.0.2",
     "eslint": "^7.6.0",
     "eslint-plugin-import": "2.22.1",
     "eslint-plugin-jsdoc": "30.7.6",
@@ -70,9 +73,8 @@
     "karma-jasmine-html-reporter": "^1.5.0",
     "mocha": "^8.2.1",
     "protractor": "~7.0.0",
+    "ts-node": "^9.0.0",
     "ts-node-dev": "^1.0.0",
-    "typescript": "~4.0.2",
-    "cross-env": "^7.0.2",
-    "ts-node": "^9.0.0"
+    "typescript": "~4.0.2"
   }
 }

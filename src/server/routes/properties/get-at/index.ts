@@ -19,6 +19,7 @@ const getPropertiesAtRouter = Router();
 
 /**
  * Decodes the input and then gets properties from the HERE_API.
+ * On success this will return a tuple of status code and array of properties.
  *
  * @param latitude This value will be parsed to a number
  * @param longitude This value will be parsed to a number

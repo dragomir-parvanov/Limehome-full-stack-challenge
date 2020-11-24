@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import bookingRouter from './bookings';
+import bookingRouter from './booking';
 import propertiesRouter from './properties';
 
 const rootApiRouter = Router();

@@ -42,7 +42,6 @@ getPropertyBookingsRouter.get('/:propertyId/bookings', async (req, res) => {
   const [statusCode, value] = await getPropertyBookings(propertyId);
 
   if (statusCode === 200) {
-    console.log('returning', value);
     return res.status(200).json(value);
   } else {
     return res.status(statusCode).send(value);

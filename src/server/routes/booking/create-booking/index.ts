@@ -13,10 +13,11 @@ export const createBookingRoute = Router();
 /**
  * Decodes then validates the body and then inserting to the database.
  * It returns a promise which always resolves with a tuple of a status code and value
+ * If the status code is 200, then the value will be the booking id
  */
 export const createBookingForProperty: (
   body: unknown
-) => Promise<[statusCode: number, value: string]> = flow(
+) => Promise<[statusCode: number, value: any]> = flow(
   CreateBookingInputDecoder.decode,
   either.mapLeft(draw),
   either.chain(validateBookingInput),
@@ -53,8 +54,8 @@ export const createBookingForProperty: (
     r()
       .then(
         either.fold(
-          (e) => e,
-          () => tuple(200, 'The booking was successfully created')
+          (e) => e as [statusCode: number, value: any], // ommiting the string type
+          (r) => tuple(200, r.id)
         )
       )
       .catch((err) => tuple(500, `Unhandled rejection: ${err}`))
@@ -62,7 +63,7 @@ export const createBookingForProperty: (
 createBookingRoute.post('', async (req, res) => {
   const [statusCode, value] = await createBookingForProperty(req.body);
 
-  res.status(statusCode).send(value);
+  res.sendStatus(statusCode).send(value);
 });
 
 export default createBookingRoute;

@@ -8,7 +8,11 @@
     "esModuleInterop": true,
     "sourceMap": true,
     "outDir": "dist/limehome-full-stack-challenge-server",
-    "types": ["mocha"]
+    "types": [
+      "jasmine",
+      "googlemaps",
+      "mocha"
+    ]
   },
   "include": [
     "src/server/**/*.node.spec.ts",
