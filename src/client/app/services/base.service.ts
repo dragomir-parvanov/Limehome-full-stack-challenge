@@ -3,7 +3,8 @@ import { Subscription } from 'rxjs';
 
 @Injectable()
 export class BaseService implements OnDestroy {
-  subscriptions: Subscription[] = [];
+  protected subscriptions: Subscription[] = [];
+
   constructor() {}
 
   ngOnDestroy() {

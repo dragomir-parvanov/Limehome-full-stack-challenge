@@ -10,7 +10,13 @@ import { PropertySwiperComponent } from './components/property-swiper/property-s
 import { PropertyCardComponent } from './components/property-card/property-card.component';
 
 @NgModule({
-  declarations: [AppComponent, NavBarComponent, MapComponent, PropertySwiperComponent, PropertyCardComponent],
+  declarations: [
+    AppComponent,
+    NavBarComponent,
+    MapComponent,
+    PropertySwiperComponent,
+    PropertyCardComponent,
+  ],
   imports: [
     HttpClientModule,
     BrowserModule,

@@ -18,6 +18,7 @@ export interface PropertyMarker extends Property {
 
 export interface PropertyCard extends Property {
   price: number;
+
   /**
    * The distance preview
    *

@@ -2,7 +2,12 @@ import {
   ACTIVE_MAP_MARKER_IMAGE_FILE_NAME,
   DEFAULT_MAP_MARKER_IMAGE_FILE_NAME,
 } from '../../constants/design';
-import { Property, PropertyMarker } from '../../types/interfaces/property';
+import {
+  Property,
+  PropertyCard,
+  PropertyMarker,
+} from '../../types/interfaces/property';
+import { getDistancePreview } from '../map';
 
 /**
  * High order function for creating a property marker for a Property
@@ -21,3 +26,11 @@ export const createMarkerFactory = (selectedPropertyId: string) => (
   console.log('creating');
   return { ...property, iconFileName, zIndex };
 };
+
+export const createPropertyCardFactory = (
+  property: Property
+): PropertyCard => ({
+  ...property,
+  price: parseFloat(Math.random().toFixed(2)),
+  distancePreview: getDistancePreview(property.distance),
+});
