@@ -14,7 +14,8 @@
     "e2e": "ng e2e",
     "watch-server": "cross-env NODE_ENV=development ts-node-dev --no-notify --project tsconfig.server.json src/server/main.ts",
     "test-server": "cross-env TS_NODE_PROJECT=tsconfig.server.json mocha",
-    "heroku-prebuild": "yarn"
+    "heroku-prebuild": "export NPM_CONFIG_PRODUCTION=false; export NODE_ENV=; NPM_CONFIG_PRODUCTION=false NODE_ENV=development npm install --only=dev --dev",
+    "heroku-postbuild": "export NPM_CONFIG_PRODUCTION=true; export NODE_ENV=production;"
   },
   "private": true,
   "dependencies": {
