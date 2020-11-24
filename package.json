@@ -1,6 +1,9 @@
 {
   "name": "limehome-full-stack-challenge",
   "version": "0.0.0",
+  "engines": {
+    "node": "14.x"
+  },
   "scripts": {
     "ng": "ng",
     "watch-client": "ng serve --proxy-config ng-proxy.conf.json",
