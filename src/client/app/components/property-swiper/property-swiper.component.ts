@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, HostListener, OnInit } from '@angular/core';
 import { PropertyCard } from '../../../../types/interfaces/property';
+import { BaseService } from '../../services/base.service';
 import { PropertyCardsService } from '../../services/cards/property-cards.service';
 import { MapService } from '../../services/map/map.service';
 

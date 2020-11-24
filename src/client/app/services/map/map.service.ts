@@ -19,15 +19,30 @@ import {
   providedIn: 'root',
 })
 export class MapService {
-  latitude = DEFAULT_MAP_LATITUDE;
-  longitude = DEFAULT_MAP_LONGITUDE;
+  position = new BehaviorSubject<{ longitude: number; latitude: number }>({
+    latitude: DEFAULT_MAP_LATITUDE,
+    longitude: DEFAULT_MAP_LONGITUDE,
+  });
+
   currentFocusedProperty = new BehaviorSubject<string>('');
   properties = new BehaviorSubject<Property[]>([]);
 
   private propertiesObservable: Observable<Property[]>;
   constructor(http: HttpClient) {
-    const at = `${this.latitude},${this.longitude}`;
+    const { latitude, longitude } = this.position.getValue();
+    const at = `${latitude},${longitude}`;
 
+    this.currentFocusedProperty.subscribe({
+      next: (id) => {
+        const property = this.properties.getValue().find((p) => p.id === id);
+        if (property) {
+          const {
+            position: [latitude, longitude],
+          } = property;
+          this.position.next({ latitude: latitude - 0.0005, longitude });
+        }
+      },
+    });
     this.propertiesObservable = http.get(`/api/properties/at=${at}`).pipe(
       catchError((err) => {
         console.log(

@@ -33,4 +33,6 @@ export const createPropertyCardFactory = (
   ...property,
   price: parseFloat(Math.random().toFixed(2)),
   distancePreview: getDistancePreview(property.distance),
+  imageSrc:
+    'https://thumbs.dreamstime.com/z/living-room-interior-design-portrait-24141228.jpg', // currently hard coded
 });

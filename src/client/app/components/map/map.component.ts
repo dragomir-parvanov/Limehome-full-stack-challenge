@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { PropertyMarker } from '../../../../types/interfaces/property';
 import { MapService } from '../../services/map/map.service';
 import { MarkersService } from '../../services/marker/markers.service';
+import BasePageComponent from '../base.component';
 
 @Component({
   selector: 'app-map',
@@ -9,7 +10,7 @@ import { MarkersService } from '../../services/marker/markers.service';
   styleUrls: ['./map.component.scss'],
   providers: [MarkersService],
 })
-export class MapComponent {
+export class MapComponent extends BasePageComponent implements OnInit {
   latitude: number;
   longitude: number;
   markers: PropertyMarker[];
@@ -18,10 +19,19 @@ export class MapComponent {
     private mapService: MapService,
     private markersService: MarkersService
   ) {
-    this.latitude = this.mapService.latitude;
-    this.longitude = this.mapService.longitude;
-
+    super();
     this.markers = this.markersService.propertyMarkers;
     this.onMarkerClick = this.markersService.onMarkerClick;
+  }
+  ngOnInit() {
+    this.subscriptions.push(
+      this.mapService.position.subscribe({
+        next: ({ latitude, longitude }) => {
+          console.log('setting stuff', latitude, longitude);
+          this.latitude = latitude;
+          this.longitude = longitude;
+        },
+      })
+    );
   }
 }

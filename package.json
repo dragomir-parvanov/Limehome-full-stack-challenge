@@ -4,12 +4,13 @@
   "scripts": {
     "ng": "ng",
     "watch-client": "ng serve --proxy-config ng-proxy.conf.json",
-    "build-client": "ng build",
+    "start":"cross-env NODE_ENV=production ts-node --project tsconfig.server.json src/server/main.ts",
+    "build": "ng build",
     "test-client": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "watch-server": "cross-env NODE_ENV=development ts-node-dev --no-notify --project tsconfig.server.json src/server/main.ts",
-    "test-server": "cross-env TS_NODE_PROJECT=tsconfig.server.json mocha"
+    "test-server": "cross-env TS_NODE_PROJECT=tsconfig.server.json mocha",
   },
   "private": true,
   "dependencies": {

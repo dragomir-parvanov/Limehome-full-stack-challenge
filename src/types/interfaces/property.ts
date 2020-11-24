@@ -27,4 +27,6 @@ export interface PropertyCard extends Property {
    * 700 M
    */
   distancePreview: string;
+
+  imageSrc: string;
 }

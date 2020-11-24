@@ -1,6 +1,6 @@
 <div class="agm-map-container">
   <app-property-swiper></app-property-swiper>
-  <agm-map [zoom]="17" [disableDefaultUI]="true" [latitude]="latitude" [longitude]="longitude">
+  <agm-map [usePanning]="true" [zoom]="17" [disableDefaultUI]="true" [latitude]="latitude" [longitude]="longitude">
     <agm-marker *ngFor="let marker of markers" [zIndex]="marker.zIndex" [latitude]="marker.position[0]"
       [longitude]="marker.position[1]" [iconUrl]="'../../../../assets/' + marker.iconFileName"
       (markerClick)="onMarkerClick(marker)">
