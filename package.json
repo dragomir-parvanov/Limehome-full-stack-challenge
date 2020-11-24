@@ -7,7 +7,7 @@
   "scripts": {
     "ng": "ng",
     "watch-client": "ng serve --proxy-config ng-proxy.conf.json",
-    "start":"node ./dist/limehome-full-stack-challenge-server/src/server/main.js",
+    "start":"node dist/limehome-full-stack-challenge-server/src/server/main.js",
     "build": "tsc --project tsconfig.server.json && ng build --prod",
     "test-client": "ng test",
     "lint": "ng lint",
