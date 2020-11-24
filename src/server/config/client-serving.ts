@@ -1,12 +1,10 @@
 import express from 'express';
 import path from 'path';
 export const configureClientServing = (app: ReturnType<typeof express>) => {
-  const clientPath = path.join(
-    '../../../../limehome-full-stack-challenge-client/'
-  );
-  app.use('*.*', express.static(clientPath, { maxAge: '1y' }));
-
   app.get('*', (req, res) => {
-    res.sendFile(path.resolve(clientPath, 'index.html'));
+    const fileUrl = req.originalUrl === '/' ? '/index.html' : req.originalUrl;
+    res.sendFile(
+      path.resolve('dist/limehome-full-stack-challenge-client' + fileUrl) // can't use express.static, atleast on windows
+    );
   });
 };

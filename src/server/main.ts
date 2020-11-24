@@ -14,7 +14,7 @@ connectToDatabaseTypeorm().then(async (connection) => {
   console.log('initialized TypeORM');
 
   const app = express();
-
+  app.use(express.urlencoded({ extended: true, limit: '50mb' }));
   app.use(express.json());
 
   app.use('/api', rootApiRouter);
