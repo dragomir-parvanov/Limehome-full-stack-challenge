@@ -91,7 +91,7 @@
         }
       }
     },
-    "/properties/at={latitudeAndLongitude}": {
+    "/properties/at={latitude},{longitude}": {
       "get": {
         "tags": [
           "properties"
@@ -104,12 +104,20 @@
         ],
         "parameters": [
           {
-            "name": "latitudeAndLongitude",
-            "in": "query",
-            "description": "The longitude and the latitude in this format {latitude,longitude}. Example: '42.698334,23.319941'",
+            "in": "path",
+            "name": "latitude",
             "required": true,
-            "type": "string",
-            "default": "42.698334,23.319941"
+            "type": "number",
+            "default": "42.698334",
+            "description": "The map latitude."
+          },
+          {
+            "in": "path",
+            "name": "longitude",
+            "required": true,
+            "type": "number",
+            "default": "23.319941",
+            "description": "The map longitude."
           }
         ],
         "responses": {
