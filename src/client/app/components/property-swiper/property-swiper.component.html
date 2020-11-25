@@ -1,3 +1,4 @@
-<div class="swiper" id="swiper">
-  <app-property-card *ngFor="let card of cards" [card]="card"></app-property-card>
+<div class="swiper">
+  <app-property-card *ngFor="let card of cards" [card]="card" [ngClass]="{selected:focusedPropertyId === card.id}">
+  </app-property-card>
 </div>

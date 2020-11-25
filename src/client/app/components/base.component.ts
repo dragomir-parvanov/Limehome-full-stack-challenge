@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 @Component({
   template: '',
 })
-export default abstract class BasePageComponent implements OnDestroy {
+export default class BasePageComponent implements OnDestroy {
   protected subscriptions: Subscription[] = [];
   ngOnDestroy() {
     this.defaultOnDestroy();

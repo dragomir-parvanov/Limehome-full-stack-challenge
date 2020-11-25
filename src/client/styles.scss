@@ -8,3 +8,12 @@ font-family: Montserrat,sans-serif;
 
 }
 
+@media (min-width: 401px) { // swiper breaks above 400px
+ .swiper {
+        .selected {
+            .container {
+                box-shadow: inset 0 0 10px 3px #b16101;
+            }
+        }
+    }
+}
