@@ -16,13 +16,13 @@ If the building succeed, you can run yarn start to start the application.
 
 Additional commands:
 
-## yarn watch-client ## - starts the client in development mode
+ yarn watch-client  - starts the client in development mode
 
-## yarn test-client ## - tests the client
+ yarn test-client  - tests the client
 
-## yarn lint ## - checking for any linting errors
+ yarn lint  - checking for any linting errors
 
-## watch-server ## - starts the server in development mode
+ yarn watch-server  - starts the server in development mode
 
-## test-server ## - runs all .node.spec.ts tests on Mocha
+ yarn test-server  - runs all .node.spec.ts tests on Mocha
 
