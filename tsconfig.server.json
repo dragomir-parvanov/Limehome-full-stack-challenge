@@ -9,7 +9,6 @@
     "sourceMap": true,
     "outDir": "dist/limehome-full-stack-challenge-server",
     "types": [
-      "jasmine",
       "googlemaps",
       "mocha"
     ]
