@@ -1,12 +1,6 @@
-import {
-  AfterViewInit,
-  Component,
-  ElementRef,
-  Input,
-  OnDestroy,
-  ViewChild,
-} from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy } from '@angular/core';
 import { PropertyCard } from '../../../../types/interfaces/property';
+import { SWIPER_INTERSECTION_OBSERVER_MAX_WINDOW_WIDTH } from '../../../constants/swiper';
 import { MapService } from '../../services/map/map.service';
 
 @Component({
@@ -19,6 +13,9 @@ export class PropertyCardComponent implements AfterViewInit, OnDestroy {
 
   observer = new IntersectionObserver(
     ([r]) => {
+      if (window.innerWidth > SWIPER_INTERSECTION_OBSERVER_MAX_WINDOW_WIDTH) {
+        return;
+      }
       if (r.intersectionRect.width > 270 / 2) {
         if (
           this.card.id === this.mapService.currentFocusedProperty.getValue()

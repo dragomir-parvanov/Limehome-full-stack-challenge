@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { createPropertyCardFactory } from '../../../../functions/factories/property';
 import { PropertyCard } from '../../../../types/interfaces/property';
+import { SWIPER_INTERSECTION_OBSERVER_MAX_WINDOW_WIDTH } from '../../../constants/swiper';
 import { BaseService } from '../base.service';
 import { MapService } from '../map/map.service';
 
@@ -14,7 +15,11 @@ export class PropertyCardsService extends BaseService {
       mapService.currentFocusedProperty.subscribe({
         next: (id) => {
           const doc = document.getElementById(id);
-          doc?.scrollIntoView({ inline: 'center', behavior: 'auto' });
+          const behavior =
+            window.innerWidth > SWIPER_INTERSECTION_OBSERVER_MAX_WINDOW_WIDTH
+              ? 'smooth'
+              : 'auto';
+          doc?.scrollIntoView({ inline: 'center', behavior });
         },
       })
     );
