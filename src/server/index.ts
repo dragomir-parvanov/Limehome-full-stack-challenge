@@ -7,6 +7,7 @@ import { API_PORT } from '../constants/port';
 import rootApiRouter from './routes/root';
 import { connectToDatabaseTypeorm } from './config/typeorm';
 import { configureClientServing } from './config/client-serving';
+import { configureSwagger } from './config/swagger';
 
 const getExpressApp = () =>
   connectToDatabaseTypeorm().then(async (connection) => {
@@ -19,6 +20,8 @@ const getExpressApp = () =>
     app.use(express.json());
 
     app.use('/api', rootApiRouter);
+
+    configureSwagger(app);
 
     configureClientServing(app);
 

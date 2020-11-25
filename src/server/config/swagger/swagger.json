@@ -1,0 +1,201 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "API documentation",
+    "version": "0.0.1",
+    "title": "Limehome interview challenge"
+  },
+  "host": "limehome-interview-challenge.herokuapp.com",
+  "basePath": "/api",
+  "tags": [
+    {
+      "name": "booking",
+      "description": "make your booking now"
+    },
+    {
+      "name": "properties",
+      "description": "Access to the properties"
+    }
+  ],
+  "schemes": [
+    "https",
+    "http"
+  ],
+  "paths": {
+    "/booking": {
+      "post": {
+        "tags": [
+          "booking"
+        ],
+        "summary": "Add a new booking to a property",
+        "description": "",
+        "operationId": "addBooking",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "description": "Booking input object that needs to be added to a property",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateBookingInput"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Will return the id of the booking"
+          },
+          "400": {
+            "description": "Bad input"
+          }
+        }
+      }
+    },
+    "/properties/{propertyId}/bookings": {
+      "get": {
+        "tags": [
+          "properties"
+        ],
+        "summary": "Returns property bookings by property Id",
+        "description": "Returns an array of bookings for a property",
+        "operationId": "getPropertyBookings",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "propertyId",
+            "in": "path",
+            "description": "ID of the property that we need to get the bookings from.",
+            "required": true,
+            "type": "integer",
+            "format": "int32"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Booking"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/properties/at={latitudeAndLongitude}": {
+      "get": {
+        "tags": [
+          "properties"
+        ],
+        "summary": "Get properties at longitude and latitude",
+        "description": "Returns an array of properties from the HERE API",
+        "operationId": "getPropertiesAt",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "latitudeAndLongitude",
+            "in": "query",
+            "description": "The longitude and the latitude in this format {latitude,longitude}. Example: '42.698334,23.319941'",
+            "required": true,
+            "type": "string",
+            "default": "42.698334,23.319941"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Property"
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid longitude or latitude "
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "CreateBookingInput": {
+      "type": "object",
+      "properties": {
+        "propertyId": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "from": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Milliseconds since epoch"
+        },
+        "to": {
+          "type": "integer",
+          "format": "int32",
+          "description": "Milliseconds since epoch, must be higher from the \"to\" property "
+        }
+      }
+    },
+    "Booking": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int32"
+        },
+        "from": {
+          "type": "string",
+          "format": "date"
+        },
+        "to": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "Property": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "The id returned from the HERE API"
+        },
+        "distance": {
+          "type": "number",
+          "description": "the distance in meters"
+        },
+        "title": {
+          "type": "string"
+        },
+        "position": {
+          "type": "array",
+          "description": "array tuple of latitude and longitude",
+          "items": {
+            "type": "number",
+            "default": [
+              42.69842,
+              23.32076
+            ]
+          }
+        }
+      }
+    }
+  },
+  "externalDocs": {
+    "description": "Github",
+    "url": "https://github.com/moderexx/Limehome-full-stack-challenge/edit/main/README.md"
+  }
+}

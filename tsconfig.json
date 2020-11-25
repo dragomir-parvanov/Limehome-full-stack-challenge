@@ -19,6 +19,7 @@
     "module": "es2020",
     "strictPropertyInitialization": false,
     "emitDecoratorMetadata": true,
+    "resolveJsonModule": true,
     "lib": [
       "es2018",
       "dom"
