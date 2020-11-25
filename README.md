@@ -1,27 +1,28 @@
-# LimehomeFullStackChallenge
+## Instalation ##
+The project uses yarn instead of npm.
+The project was developed and tested on Node 14.x.x and Typescript 4.x.x
+Just run the command 'yarn' to install all dependencies.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
+You will also need to specify environment files for each stage.
 
-## Development server
+[setup environment files](https://i.imgur.com/4d5wEVQ.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+and each .env file needs to have these properties
 
-## Code scaffolding
+[.env file](https://i.imgur.com/qexN0ax.png)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+After you are done, you can run yarn build to build the server and then the client.
+If the building succeed, you can run yarn start to start the application.
 
-## Build
+Additional commands:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## yarn watch-client ## - starts the client in development mode
 
-## Running unit tests
+## yarn test-client ## - tests the client
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## yarn lint ## - checking for any linting errors
 
-## Running end-to-end tests
+## watch-server ## - starts the server in development mode
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## test-server ## - runs all .node.spec.ts tests on Mocha
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
