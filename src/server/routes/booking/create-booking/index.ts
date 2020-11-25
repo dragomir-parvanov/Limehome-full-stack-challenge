@@ -63,7 +63,7 @@ export const createBookingForProperty: (
 createBookingRoute.post('', async (req, res) => {
   const [statusCode, value] = await createBookingForProperty(req.body);
 
-  res.sendStatus(statusCode).send(value);
+  res.status(statusCode).send(String(value));
 });
 
 export default createBookingRoute;
