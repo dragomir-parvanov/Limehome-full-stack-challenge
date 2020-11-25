@@ -1,27 +1,43 @@
-# LimehomeFullStackChallenge
+## Information ##
+Single repository, containing both the client and the server with one 'package.json' file and one 'node_modules' folder.
+For testing the nodejs dependent files I used the Mocha testing framework and the supertest testing module. For the browser dependent files I used Jasmine + Karma(the Angular CLI setup). For the database I used PostgreSQL and TypeORM.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
+## keywords ##
+Angular, Express, PostgreSQL, TypeORM, fp-ts, io-ts, Mocha, Jasmine, Karma, supertest, 
 
-## Development server
+## Known issues #
+The swiper would not work on some devices, because I restricted myself of using third party module like Swiper.js. I ended up using the 'IntersectionObserver' API, but it shows that it does not work on some devices and needs additionally tweaking. It is working on the latest chrome desktop version, with the mobile inspector on.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Instalation ##
+The project uses yarn instead of npm.
+The project was developed and tested on Node 14.x.x and Typescript 4.x.x
+Just run the command 'yarn' to install all dependencies.
 
-## Code scaffolding
+You will also need to specify environment files for each stage.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+[setup environment files](https://i.imgur.com/4d5wEVQ.png)
 
-## Build
+and each .env file needs to have these properties
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+[.env file](https://i.imgur.com/qexN0ax.png)
 
-## Running unit tests
+The node applications pick the environment file, based on the process.NODE_ENV, so to specify which environment file you want to use.
+You have to specify it with setting the NODE_ENV environment variable prior running a command. Example on Linux and Mac:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+'NODE_ENV=production yarn watch-server'
 
-## Running end-to-end tests
+After you are done, you can run yarn build to build the server and then the client.
+If the building succeed, you can run yarn start to start the application.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Additional commands:
 
-## Further help
+ yarn watch-client  - starts the client in development mode
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+ yarn test-client  - tests the client
+
+ yarn lint  - checking for any linting errors
+
+ yarn watch-server  - starts the server in development mode
+
+ yarn test-server  - runs all .node.spec.ts tests on Mocha
+
