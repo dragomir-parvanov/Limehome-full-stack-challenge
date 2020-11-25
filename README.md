@@ -1,3 +1,10 @@
+## Information ##
+Single repository, containing both the client and the server with one 'package.json' file and one 'node_modules' folder.
+For testing the nodejs dependent files I used the Mocha testing framework. For the browser dependent files I used Jasmine + Karma(the Angular CLI setup).
+
+## Known issues #
+The swiper would not work on some devices, because I restricted myself of using third party module like Swiper.js. I ended up using the 'IntersectionObserver' API, but it shows that it does not work on some devices and needs additionally tweaking.
+
 ## Instalation ##
 The project uses yarn instead of npm.
 The project was developed and tested on Node 14.x.x and Typescript 4.x.x
