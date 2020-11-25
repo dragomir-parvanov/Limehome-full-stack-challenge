@@ -34,7 +34,7 @@
           "application/json"
         ],
         "produces": [
-          "application/json"
+          "text"
         ],
         "parameters": [
           {
@@ -142,8 +142,7 @@
       "type": "object",
       "properties": {
         "propertyId": {
-          "type": "integer",
-          "format": "int32"
+          "type": "string"
         },
         "from": {
           "type": "integer",
