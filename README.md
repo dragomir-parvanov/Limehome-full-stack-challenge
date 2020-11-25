@@ -6,7 +6,7 @@ For testing the nodejs dependent files I used the Mocha testing framework and th
 https://limehome-interview-challenge.herokuapp.com/api-docs
 
 ## keywords ##
-Angular, Express, PostgreSQL, TypeORM, fp-ts, io-ts, Mocha, Jasmine, Karma, supertest, 
+Angular, Express, PostgreSQL, TypeORM, fp-ts, io-ts, Mocha, Jasmine, Karma, supertest, Swagger 
 
 ## Known issues #
 The swiper would not work on some devices, because I restricted myself of using third party module like Swiper.js. I ended up using the 'IntersectionObserver' API, but it shows that it does not work on some devices and needs additionally tweaking. It is working on the latest chrome desktop version, with the mobile inspector on.
