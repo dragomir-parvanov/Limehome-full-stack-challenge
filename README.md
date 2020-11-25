@@ -14,7 +14,7 @@ and each .env file needs to have these properties
 The node applications pick the environment file, based on the process.NODE_ENV, so to specify which environment file you want to use.
 You have to specify it with setting the NODE_ENV environment variable prior running a command. Example on Linux and Mac:
 
-# NODE_ENV=production yarn watch-server #
+### NODE_ENV=production yarn watch-server ###
 
 After you are done, you can run yarn build to build the server and then the client.
 If the building succeed, you can run yarn start to start the application.
