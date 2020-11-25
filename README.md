@@ -1,6 +1,6 @@
 ## Information ##
 Single repository, containing both the client and the server with one 'package.json' file and one 'node_modules' folder.
-For testing the nodejs dependent files I used the Mocha testing framework. For the browser dependent files I used Jasmine + Karma(the Angular CLI setup).
+For testing the nodejs dependent files I used the Mocha testing framework and the supertest testing module. For the browser dependent files I used Jasmine + Karma(the Angular CLI setup).
 
 ## Known issues #
 The swiper would not work on some devices, because I restricted myself of using third party module like Swiper.js. I ended up using the 'IntersectionObserver' API, but it shows that it does not work on some devices and needs additionally tweaking. It is working on the latest chrome desktop version, with the mobile inspector on.
