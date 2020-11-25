@@ -2,6 +2,9 @@
 Single repository, containing both the client and the server with one 'package.json' file and one 'node_modules' folder.
 For testing the nodejs dependent files I used the Mocha testing framework and the supertest testing module. For the browser dependent files I used Jasmine + Karma(the Angular CLI setup). For the database I used PostgreSQL and TypeORM.
 
+## API Documentation ##
+https://limehome-interview-challenge.herokuapp.com/api-docs
+
 ## keywords ##
 Angular, Express, PostgreSQL, TypeORM, fp-ts, io-ts, Mocha, Jasmine, Karma, supertest, 
 
